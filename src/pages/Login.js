@@ -2,15 +2,34 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
+import Lottie from 'react-lottie';
 import { sendUserInfo } from '../actions';
+import animationData from '../animation.json';
 import '../App.css';
 
 // eslint-disable-next-line max-lines-per-function
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [animationState, setAnimationState] = useState({
+    isStopped: false, isPaused: false,
+  });
   const history = useHistory();
   const dispatch = useDispatch();
+  const pauseTime = 2200;
+
+  setInterval(() => {
+    setAnimationState({ ...animationState, isPaused: true });
+  }, pauseTime);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
   function onSubmitForm() {
     dispatch(sendUserInfo(email));
@@ -27,7 +46,13 @@ function Login() {
       <div className="login">
         <div>
           <h1>VIRTUAL WALLET</h1>
-          <img src="/pngegg.png" alt="coin sprite" />
+          <Lottie
+            options={ defaultOptions }
+            height={ 150 }
+            width={ 200 }
+            isStopped={ animationState.isStopped }
+            isPaused={ animationState.isPaused }
+          />
         </div>
         <form>
           <div>
