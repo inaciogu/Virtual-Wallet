@@ -16,7 +16,7 @@ function Login() {
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const pauseTime = 2200;
+  const pauseTime = 5000;
 
   setInterval(() => {
     setAnimationState({ ...animationState, isPaused: true });

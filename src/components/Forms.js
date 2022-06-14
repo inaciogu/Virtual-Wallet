@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Dialog, DialogTitle, Box } from '@material-ui/core';
 import { fetchCurrenciesAPI, sendWalletExpenses } from '../actions';
 import fetchCoins from '../api/coins';
 import Select from './Select';
 
 // eslint-disable-next-line max-lines-per-function
-function Forms({ setIsVisible }) {
+function Forms({ open, handleClose }) {
+  const dispatch = useDispatch();
+
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('USD');
@@ -15,7 +17,6 @@ function Forms({ setIsVisible }) {
   const [tag, setTag] = useState('Alimentação');
   const [id, setId] = useState(0);
   const [exchangeRates, setExchangeRates] = useState(null);
-  const dispatch = useDispatch();
 
   const currencies = useSelector((state) => state.wallet.currencies);
 
@@ -36,10 +37,11 @@ function Forms({ setIsVisible }) {
   }
 
   return (
-    <div>
-      <form className="expense-form">
-        <h1>Informe sua despesa</h1>
+    <Dialog open={ open } onClose={ handleClose }>
+      <Box display="flex" flexDirection="column" p={ 3 } alignItems="center">
+        <DialogTitle>Informe sua despesa</DialogTitle>
         <TextField
+          fullWidth
           variant="outlined"
           label="Valor"
           value={ value }
@@ -58,6 +60,7 @@ function Forms({ setIsVisible }) {
           setCurrency={ ({ target }) => setCurrency(target.value) }
         />
         <TextField
+          fullWidth
           variant="outlined"
           label="Descrição"
           value={ description }
@@ -66,7 +69,12 @@ function Forms({ setIsVisible }) {
           type="text"
           onChange={ ({ target }) => setDescription(target.value) }
         />
-        <span>
+        <Box
+          display="flex"
+          alignItems="center"
+          width="100%"
+          justifyContent="space-evenly"
+        >
           <Button
             style={ { margin: '20px', height: '60px' } }
             variant="contained"
@@ -80,19 +88,20 @@ function Forms({ setIsVisible }) {
             style={ { margin: '20px', height: '60px' } }
             variant="contained"
             color="secondary"
-            onClick={ setIsVisible }
+            onClick={ handleClose }
             type="button"
           >
             Fechar
           </Button>
-        </span>
-      </form>
-    </div>
+        </Box>
+      </Box>
+    </Dialog>
   );
 }
 
 Forms.propTypes = {
-  setIsVisible: propTypes.func.isRequired,
+  handleClose: propTypes.func.isRequired,
+  open: propTypes.bool.isRequired,
 };
 
 export default Forms;

@@ -102,5 +102,6 @@ header {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 2rem;
+  width: 100%;
 }
 

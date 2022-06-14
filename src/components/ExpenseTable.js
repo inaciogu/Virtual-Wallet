@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { deleteExpenses } from '../actions';
 
-function TableRow() {
+function ExpenseTable() {
   const expensesWallet = useSelector((state) => state.wallet.expenses);
   const dispatch = useDispatch();
   return (
@@ -52,4 +52,4 @@ function TableRow() {
   );
 }
 
-export default TableRow;
+export default ExpenseTable;

@@ -1,13 +1,20 @@
 import React from 'react';
-import { Select as Selector, MenuItem } from '@material-ui/core';
+import { TextField, MenuItem, Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 function Select({ setTag, setMethod, setCurrency, tag, method, currency, coins }) {
   return (
-    <div className="select">
-      <Selector
+    <Box
+      width="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="space-evenly"
+      p={ 3 }
+    >
+      <TextField
+        select
+        SelectProps={ { MenuProps: { style: { maxHeight: 300 } } } }
         label="Moeda"
-        name="currency"
         value={ currency }
         onChange={ setCurrency }
         id="input-coin"
@@ -17,20 +24,30 @@ function Select({ setTag, setMethod, setCurrency, tag, method, currency, coins }
             {coin}
           </MenuItem>
         ))}
-      </Selector>
-      <Selector value={ method } onChange={ setMethod } name="method" id="input-method">
+      </TextField>
+      <TextField
+        label="Método"
+        select
+        value={ method }
+        onChange={ setMethod }
+      >
         <MenuItem value="Dinheiro">Dinheiro</MenuItem>
         <MenuItem value="Cartão de débito">Cartão de débito</MenuItem>
         <MenuItem value="Cartão de crédito">Cartão de crédito</MenuItem>
-      </Selector>
-      <Selector value={ tag } onChange={ setTag } name="tag" id="input-tag">
+      </TextField>
+      <TextField
+        select
+        label="Tag"
+        value={ tag }
+        onChange={ setTag }
+      >
         <MenuItem value="Lazer">Lazer</MenuItem>
         <MenuItem value="Alimentação">Alimentação</MenuItem>
         <MenuItem value="Trabalho">Trabalho</MenuItem>
         <MenuItem value="Transporte">Transporte</MenuItem>
         <MenuItem value="Saúde">Saúde</MenuItem>
-      </Selector>
-    </div>
+      </TextField>
+    </Box>
   );
 }
 
