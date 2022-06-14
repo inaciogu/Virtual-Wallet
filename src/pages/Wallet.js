@@ -8,6 +8,11 @@ function Wallet() {
   const [open, setOpen] = useState(false);
   const expenses = useSelector((state) => state.wallet.expenses);
 
+  const { format } = Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+
   function handleExpenses() {
     const expense = expenses.reduce((acc, cur) => {
       acc += cur.exchangeRates[cur.currency].ask * cur.value;
@@ -25,8 +30,7 @@ function Wallet() {
         <div
           data-testid="total-field"
         >
-          {`Despesas: ${handleExpenses()}`}
-          <span data-testid="header-currency-field">BRL</span>
+          {`Despesas: ${format(handleExpenses())}`}
         </div>
       </header>
       <main className="main">
