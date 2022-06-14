@@ -6,10 +6,12 @@
  
  ### Tecnologias usadas
  
-  Neste projeto foram utilizados:
   - HTML5
   - CSS3
   - Javascript
   - React hooks
   - Redux
   - Material UI
+
+
+![wallet](https://user-images.githubusercontent.com/82843746/173599103-5c7104f1-8c20-41b9-a558-c2483b4b7750.png)
