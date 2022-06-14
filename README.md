@@ -14,4 +14,10 @@
   - Material UI
 
 
+### Como rodar localment
+ - Faça o clone do repositório
+ - Instale as dependencias com o comando `npm install`
+ - Rode o comando `npm start` para iniciar a aplicação
+
+
 ![wallet](https://user-images.githubusercontent.com/82843746/173599103-5c7104f1-8c20-41b9-a558-c2483b4b7750.png)
